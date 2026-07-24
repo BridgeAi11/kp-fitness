@@ -60,8 +60,8 @@ export default function BMICalculator() {
 
   return (
     <section className="py-32 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#FF2A2A]/40 to-transparent" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#FF2A2A]/4 rounded-full blur-[150px]" />
+      <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-[#FF2A2A]/40 to-transparent" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-[#FF2A2A]/4 rounded-full blur-[150px]" />
 
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}

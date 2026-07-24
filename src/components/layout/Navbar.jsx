@@ -7,54 +7,12 @@ function Logo() {
   return (
     <a
       href="#home"
-      className="flex items-center gap-4 no-underline select-none group"
+      className="flex items-center justify-center h-full"
     >
-      {/* KP Logo */}
-      <div
-        className="
-          text-[#FF2A2A]
-          text-5xl
-          font-black
-          italic
-          tracking-tighter
-          transition-all
-          duration-500
-          group-hover:scale-110
-          group-hover:-rotate-3
-          group-hover:drop-shadow-[0_0_25px_rgba(255,42,42,.9)]
-          "
-        style={{
-          fontFamily: "Orbitron, sans-serif",
-        }}
-      >
-        KP
-      </div>
-
-      {/* Text */}
-      <div className="flex flex-col leading-none">
-        <span
-          className="
-            text-white
-            text-2xl
-            font-bold
-            tracking-[4px]
-          "
-        >
-          FITNESS
-        </span>
-
-        <span
-          className="
-            text-[#FF2A2A]
-            uppercase
-            text-[9px]
-            tracking-[4px]
-            mt-1
-          "
-        >
-          ELITE TRAINING
-        </span>
-      </div>
+      <img
+        src="/logo.png"
+        alt="KP Fitness"
+        className="h-24 md:h-28 w-auto object-contain -my-4"    />
     </a>
   );
 }
@@ -86,19 +44,20 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-        padding: scrolled ? "12px 0" : "20px 0",
-        background: scrolled ? "rgba(7,7,7,0.92)" : "transparent",
-        backdropFilter: scrolled ? "blur(20px)" : "none",
-        WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
-      }}
+  padding: "8px 0",
+  background: scrolled
+    ? "rgba(7,7,7,0.85)"
+    : "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%)",
+  backdropFilter: scrolled ? "blur(16px)" : "none",
+  WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+  borderBottom: "none",
+}}
+
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+      <div className="max-w-350 mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
 
         {/* Logo */}
         <Logo />
@@ -144,7 +103,7 @@ export default function Navbar() {
       left-4
       right-4
       bottom-0
-      h-[2px]
+      h-0.5
       bg-[#FF2A2A]
       scale-x-0
       group-hover:scale-x-100
