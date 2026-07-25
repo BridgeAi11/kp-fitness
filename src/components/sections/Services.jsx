@@ -15,13 +15,13 @@ export default function Services() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   return (
-    <section id="programs" className="py-32 relative overflow-hidden">
+    <section id="programs" className="py-16 sm:py-24 lg:py-32 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 right-0 w-96 h-96 bg-[#FF2A2A]/5 rounded-full blur-[120px] -translate-y-1/2" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="w-8 h-px bg-[#FF2A2A]" />
             <span className="text-[#FF2A2A] text-xs uppercase tracking-widest font-medium">
@@ -29,21 +29,21 @@ export default function Services() {
             </span>
             <div className="w-8 h-px bg-[#FF2A2A]" />
           </div>
-          <h2 className="font-heading text-6xl md:text-7xl text-white">
+          <h2 className="font-heading text-4xl sm:text-6xl md:text-7xl text-white">
             OUR <span className="text-[#FF2A2A] glow-red-text">SERVICES</span>
           </h2>
         </div>
 
         {/* Cards Grid */}
-        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6">
           {services.map((s, i) => (
             <div
               key={i}
               className="group relative glass rounded-2xl p-6 cursor-pointer overflow-hidden"
               style={{
                 opacity: inView ? 1 : 0,
-                transform: inView ? 'translateY(0)' : 'translateY(60px)',
-                transition: `all 0.7s ease ${i * 0.08}s`,
+                transform: inView ? 'translateY(0)' : 'translateY(40px)',
+                transition: `all 0.6s ease ${i * 0.06}s`,
                 border: '1px solid rgba(255,255,255,0.06)',
               }}
             >
@@ -64,7 +64,7 @@ export default function Services() {
               </h3>
 
               {/* Desc */}
-              <p className="relative z-10 text-white/40 text-sm leading-relaxed">
+              <p className="relative z-10 text-white/50 text-sm leading-relaxed">
                 {s.desc}
               </p>
 

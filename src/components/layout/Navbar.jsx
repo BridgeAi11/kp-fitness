@@ -12,7 +12,8 @@ function Logo() {
       <img
         src="/logo.png"
         alt="KP Fitness"
-        className="h-24 md:h-28 w-auto object-contain -my-4"    />
+        className="h-24 sm:h-28 md:h-32 w-auto object-contain -my-3 sm:-my-4 transition-all duration-300 hover:scale-105"
+      />
     </a>
   );
 }
@@ -39,25 +40,23 @@ export default function Navbar() {
   }, []);
 
   const handleJoinNow = () => {
-    window.location.href = "tel:+919962259269";
+    window.location.href = "tel:+916374642981";
   };
 
   return (
     <motion.nav
-      
       className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
       style={{
-  padding: "8px 0",
-  background: scrolled
-    ? "rgba(7,7,7,0.85)"
-    : "linear-gradient(to bottom, rgba(0,0,0,0.55) 0%, transparent 100%)",
-  backdropFilter: scrolled ? "blur(16px)" : "none",
-  WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
-  borderBottom: "none",
-}}
-
+        padding: "10px 0",
+        background: scrolled
+          ? "rgba(7,7,7,0.92)"
+          : "linear-gradient(to bottom, rgba(0,0,0,0.75) 0%, transparent 100%)",
+        backdropFilter: scrolled ? "blur(16px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(16px)" : "none",
+        borderBottom: scrolled ? "1px solid rgba(255,42,42,0.15)" : "none",
+      }}
     >
-      <div className="max-w-350 mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-8 md:px-12 flex items-center justify-between gap-4">
 
         {/* Logo */}
         <Logo />
@@ -69,194 +68,127 @@ export default function Navbar() {
             const isActive = activeLink === id;
             return (
               <motion.li
-              key={link}
-              initial={{ opacity: 0, y: -16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.05 * i, duration: 0.5 }}
-              style={{ listStyle: "none" }}
-            >
-              <a
-  href={`#${id}`}
-  onClick={() => setActiveLink(id)}
-  className="
-    relative
-    px-5
-    py-3
-    text-sm
-    font-semibold
-    transition-all
-    duration-300
-    group
-    no-underline
-  "
-  style={{
-    color: isActive ? "#FF2A2A" : "rgba(255,255,255,.65)",
-  }}
->
-  <span className="relative z-10 group-hover:text-white transition-all duration-300">
-    {link}
-  </span>
+                key={link}
+                initial={{ opacity: 0, y: -16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.05 * i, duration: 0.5 }}
+                style={{ listStyle: "none" }}
+              >
+                <a
+                  href={`#${id}`}
+                  onClick={() => setActiveLink(id)}
+                  className="relative px-5 py-3 text-sm font-semibold transition-all duration-300 group no-underline"
+                  style={{
+                    color: isActive ? "#FF2A2A" : "rgba(255,255,255,.65)",
+                  }}
+                >
+                  <span className="relative z-10 group-hover:text-white transition-all duration-300">
+                    {link}
+                  </span>
 
-  {/* Hover underline */}
-  <span className="
-      absolute
-      left-4
-      right-4
-      bottom-0
-      h-0.5
-      bg-[#FF2A2A]
-      scale-x-0
-      group-hover:scale-x-100
-      origin-left
-      transition-transform
-      duration-300
-  "/>
-
- {/* Hover glow */}
-<span
-  className="
-    absolute
-    inset-0
-    rounded-xl
-    opacity-0
-    group-hover:opacity-100
-    transition-all
-    duration-300
-  "
-/>
-</a>
-            </motion.li>
+                  {/* Hover underline */}
+                  <span
+                    className="absolute bottom-1 left-5 right-5 h-[2px] bg-[#FF2A2A] transition-all duration-300 transform scale-x-0 group-hover:scale-x-100"
+                    style={{
+                      transformOrigin: "left center",
+                      backgroundColor: "#FF2A2A",
+                    }}
+                  />
+                </a>
+              </motion.li>
             );
           })}
         </ul>
 
-        {/* Right side */}
-        <div className="flex items-center gap-2 md:gap-3">
-
-          {/* Join Now — calls on click */}
+        {/* Right CTA Button (Desktop) */}
+        <div className="hidden lg:flex items-center gap-4">
           <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.03, boxShadow: "0 0 24px rgba(255,42,42,0.6)" }}
+            whileTap={{ scale: 0.97 }}
             onClick={handleJoinNow}
-            className="hidden md:flex items-center gap-2 px-5 py-2.5 rounded-full text-white font-semibold text-sm transition-all duration-300 relative overflow-hidden group border-none cursor-pointer"
-            style={{
-              background: "#FF2A2A",
-              boxShadow: "0 0 20px rgba(255,42,42,0.4)",
-            }}
+            className="px-6 py-2.5 bg-[#FF2A2A] text-white font-bold text-xs uppercase tracking-wider rounded-full shadow-[0_4px_16px_rgba(255,42,42,0.4)] hover:bg-red-600 transition-all duration-300 flex items-center gap-2 cursor-pointer"
           >
-            {/* Phone icon */}
             <svg
-              width="14"
-              height="14"
+              className="w-3.5 h-3.5"
+              fill="currentColor"
               viewBox="0 0 24 24"
-              fill="none"
-              stroke="white"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
             >
-              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.18 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
+              <path d="M6.62 10.79a15.053 15.053 0 006.59 6.59l2.2-2.2a1.003 1.003 0 011.02-.24c1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
             </svg>
-            <span className="relative z-10">Join Now</span>
-            <div className="absolute inset-0 bg-red-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            <span>Join Now</span>
           </motion.button>
-
-          {/* Mobile hamburger */}
-          <button
-            className="lg:hidden flex flex-col justify-center items-center w-9 h-9 rounded-lg gap-1.5 border-none cursor-pointer"
-            style={{ background: "rgba(255,255,255,0.06)" }}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <motion.span
-              animate={menuOpen ? { rotate: 45, y: 7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="block w-5 h-0.5 bg-white rounded-full"
-            />
-            <motion.span
-              animate={menuOpen ? { opacity: 0 } : { opacity: 1 }}
-              transition={{ duration: 0.2 }}
-              className="block w-5 h-0.5 bg-white rounded-full"
-            />
-            <motion.span
-              animate={menuOpen ? { rotate: -45, y: -7 } : { rotate: 0, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="block w-5 h-0.5 bg-white rounded-full"
-            />
-          </button>
         </div>
+
+        {/* Mobile Hamburger Button */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="lg:hidden p-2.5 rounded-xl bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-colors focus:outline-none cursor-pointer"
+          aria-label="Toggle menu"
+        >
+          <div className="w-6 h-5 flex flex-col justify-between items-center">
+            <span
+              className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
+                menuOpen ? "rotate-45 translate-y-2" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
+                menuOpen ? "opacity-0" : ""
+              }`}
+            />
+            <span
+              className={`w-full h-0.5 bg-white rounded-full transition-all duration-300 ${
+                menuOpen ? "-rotate-45 -translate-y-2" : ""
+              }`}
+            />
+          </div>
+        </button>
+
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Drawer Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35, ease: "easeInOut" }}
-            className="lg:hidden overflow-hidden mt-3"
-            style={{
-              background: "rgba(7,7,7,0.97)",
-              backdropFilter: "blur(20px)",
-              borderTop: "1px solid rgba(255,255,255,0.06)",
-            }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden bg-[#0A0A0A]/95 border-b border-white/10 backdrop-blur-2xl overflow-hidden"
           >
-            <div className="px-4 py-4 space-y-1">
-              {navLinks.map((link, i) => {
+            <div className="px-6 py-6 space-y-3">
+              {navLinks.map((link) => {
                 const id = link.toLowerCase();
+                const isActive = activeLink === id;
                 return (
-                  <motion.a
+                  <a
                     key={link}
                     href={`#${id}`}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
                     onClick={() => {
-                      setMenuOpen(false);
                       setActiveLink(id);
+                      setMenuOpen(false);
                     }}
-                    className="flex items-center justify-between py-3 px-3 rounded-xl text-white/70 hover:text-white transition-all duration-300 no-underline"
-                    style={{}}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = "rgba(255,255,255,0.04)";
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = "transparent";
-                    }}
+                    className={`block py-3 px-4 rounded-xl text-base font-semibold transition-all duration-300 ${
+                      isActive
+                        ? "bg-[#FF2A2A]/15 text-[#FF2A2A] border border-[#FF2A2A]/30"
+                        : "text-white/70 hover:text-white hover:bg-white/5"
+                    }`}
                   >
-                    <span className="font-medium text-sm">{link}</span>
-                    <span className="text-[#FF2A2A] text-xs font-bold">+</span>
-                  </motion.a>
+                    {link}
+                  </a>
                 );
               })}
 
-              {/* Mobile Join Now */}
-              <div className="pt-4 border-t border-white/6 mt-2">
+              <div className="pt-4 border-t border-white/10">
                 <button
                   onClick={() => {
+                    handleJoinNow();
                     setMenuOpen(false);
-                    window.location.href = "tel:+919962259269";
                   }}
-                  className="w-full py-4 rounded-xl text-white font-bold text-sm border-none cursor-pointer flex items-center justify-center gap-3"
-                  style={{
-                    background: "#FF2A2A",
-                    boxShadow: "0 0 24px rgba(255,42,42,0.35)",
-                  }}
+                  className="w-full py-3.5 bg-[#FF2A2A] text-white font-extrabold text-sm uppercase tracking-wider rounded-xl shadow-[0_4px_20px_rgba(255,42,42,0.4)] flex items-center justify-center gap-2 cursor-pointer"
                 >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="white"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.18 1.18 2 2 0 012.18 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.18 6.18l1.28-1.28a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" />
-                  </svg>
-                  Join Now — Call Us
+                  <span>Join Now</span>
+                  <span>→</span>
                 </button>
               </div>
             </div>

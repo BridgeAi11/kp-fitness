@@ -1,205 +1,177 @@
 import { useInView } from 'react-intersection-observer'
-import { useTilt } from '../../hooks/useTilt'
-import { lazy, Suspense } from 'react'
-const KettlebellScene = lazy(() => import('../3d/KettlebellScene'))
-
+import { motion } from 'framer-motion'
+import aboutGymImg from '../../assets/about-gym.png'
 
 const features = [
   {
     icon: '⚡',
     title: 'Customized For You',
-    desc: 'Personalized workout plans based on your body goals and fitness level.',
+    desc: 'Personalized workout plans tailored specifically to your body goals and fitness level.',
   },
   {
     icon: '🕐',
-    title: '24/7 Support',
-    desc: 'Our trainers are always available whenever you need guidance.',
+    title: '24/7 Trainer Support',
+    desc: 'Certified elite coaches available whenever you need guidance, form checks, or motivation.',
   },
   {
-    icon: '📱',
-    title: 'Workout Anywhere',
-    desc: 'Mobile-friendly workouts available anytime, anywhere you go.',
+    icon: '📊',
+    title: 'Real-Time Progress Analytics',
+    desc: 'Track your strength gains, body composition shifts, and performance metrics in real time.',
   },
   {
     icon: '💎',
-    title: 'Affordable Membership',
-    desc: 'Premium fitness experience at highly competitive pricing.',
+    title: 'Premium Facility',
+    desc: 'State-of-the-art training gear, luxury amenities, and competitive membership options.',
   },
 ]
 
-function TiltCard({ f, i, inView }) {
-  const { ref, onMouseMove, onMouseLeave } = useTilt();
-
-  return (
-    <div
-      ref={ref}
-      onMouseMove={onMouseMove}
-      onMouseLeave={onMouseLeave}
-      className="glass rounded-2xl p-6 group cursor-pointer"
-      style={{
-        opacity: inView ? 1 : 0,
-        transform: inView ? "translateY(0)" : "translateY(50px)",
-        transition: `opacity 0.7s ease ${i * 0.15}s, transform 0.7s ease ${i * 0.15}s`,
-        border: "1px solid rgba(255,255,255,0.06)",
-        willChange: "transform",
-      }}
-    >
-      <div className="w-12 h-12 rounded-full bg-[#FF2A2A]/10 border border-[#FF2A2A]/30 flex items-center justify-center text-xl mb-4 group-hover:rotate-12 group-hover:bg-[#FF2A2A]/20 transition-all duration-500">
-        {f.icon}
-      </div>
-
-      <h3 className="text-white font-semibold text-lg mb-2 group-hover:text-[#FF2A2A] transition-colors duration-300">
-        {f.title}
-      </h3>
-
-      <p className="text-white/40 text-sm leading-relaxed">
-        {f.desc}
-      </p>
-
-      <div className="mt-4 w-0 h-px bg-[#FF2A2A] group-hover:w-full transition-all duration-500" />
-    </div>
-  );
-}
+const highlights = [
+  'Certified Elite Trainers & Coaches',
+  'State-of-the-Art Training Equipment',
+  'Personalized Workout & Nutrition Plans',
+  'Flexible 24/7 Member Access',
+]
 
 export default function About() {
-  const { ref: titleRef, inView: titleInView } = useInView({ triggerOnce: true, threshold: 0.3 })
+  const { ref: titleRef, inView: titleInView } = useInView({ triggerOnce: true, threshold: 0.2 })
   const { ref: cardsRef, inView: cardsInView } = useInView({ triggerOnce: true, threshold: 0.2 })
 
   return (
-    <section id="about" className="py-32 relative overflow-hidden">
-      {/* Background glow */}
-      <div className="absolute top-1/2 left-0 w-96 h-96 bg-[#FF2A2A]/5 rounded-full blur-[100px] -translate-y-1/2" />
+    <section id="about" className="py-24 lg:py-32 relative overflow-hidden bg-[#090A0E]">
+      {/* Subtle red ambient glow backdrop */}
+      <div className="absolute top-1/2 -left-20 w-96 h-96 bg-[#FF2A2A]/10 rounded-full blur-[120px] -translate-y-1/2 pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+      <div className="max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-[80px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
 
-          {/* Left — Text Content */}
-          <div ref={titleRef}>
-            {/* Label */}
-            <div
-              className="inline-flex items-center gap-2 mb-6"
-              style={{
-                opacity: titleInView ? 1 : 0,
-                transform: titleInView ? 'translateX(0)' : 'translateX(-30px)',
-                transition: 'all 0.6s ease',
-              }}
+          {/* Left Column — Text Content */}
+          <div ref={titleRef} className="lg:col-span-6 flex flex-col items-start">
+            {/* Section Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={titleInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="mb-5"
             >
-              <div className="w-8 h-px bg-[#FF2A2A]" />
-              <span className="text-[#FF2A2A] text-xs uppercase tracking-widest font-medium">
-                About Us
-              </span>
-            </div>
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#181A26] border border-white/15 backdrop-blur-md">
+                <span className="w-2 h-2 rounded-full bg-[#FF2A2A] shadow-[0_0_8px_#FF2A2A]" />
+                <span className="text-white text-xs uppercase tracking-widest font-bold">
+                  ABOUT KP FITNESS
+                </span>
+              </div>
+            </motion.div>
 
-            {/* Heading */}
-            <h2
-              className="font-heading text-6xl md:text-7xl leading-none mb-8"
-              style={{
-                opacity: titleInView ? 1 : 0,
-                transform: titleInView ? 'translateY(0)' : 'translateY(40px)',
-                transition: 'all 0.8s ease 0.2s',
-              }}
+            {/* Clean Heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={titleInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight mb-6"
             >
-              <span className="text-white block">TRAIN</span>
-              <span className="text-white block">SMARTER.</span>
-              <span className="text-[#FF2A2A] glow-red-text block">BECOME</span>
-              <span className="text-[#FF2A2A] glow-red-text block">STRONGER.</span>
-            </h2>
+              TRAIN SMARTER. <br />
+              <span className="text-[#FF2A2A]">BECOME STRONGER.</span>
+            </motion.h2>
 
-            {/* Body text */}
-            <p
-              className="text-white/50 text-base leading-relaxed mb-10 max-w-lg"
-              style={{
-                opacity: titleInView ? 1 : 0,
-                transform: titleInView ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.8s ease 0.4s',
-              }}
+            {/* Body paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={titleInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="text-white/80 text-base sm:text-lg leading-relaxed mb-8 max-w-xl"
             >
-              We combine science-backed training methods, certified coaches,
-              premium equipment, and personalized nutrition plans to deliver
-              measurable fitness transformations that last.
-            </p>
+              At KP Fitness, we combine science-backed training programs, elite certified coaches, state-of-the-art facilities, and customized nutrition plans to help you achieve lasting physical and mental transformation.
+            </motion.p>
 
-            {/* CTA */}
-            <div
-              style={{
-                opacity: titleInView ? 1 : 0,
-                transform: titleInView ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'all 0.8s ease 0.6s',
-              }}
+            {/* Key Highlights Checklist */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={titleInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10 w-full max-w-xl"
             >
-              <button className="px-8 py-4 bg-[#FF2A2A] text-white font-semibold rounded-full glow-red hover:bg-red-600 transition-all duration-300 hover:scale-105">
-                Discover More
-              </button>
-            </div>
+              {highlights.map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3">
+                  <div className="w-5 h-5 rounded-full bg-[#FF2A2A]/20 border border-[#FF2A2A]/50 flex items-center justify-center text-[#FF2A2A] text-xs font-bold shrink-0">
+                    ✓
+                  </div>
+                  <span className="text-white/90 text-sm font-medium">{item}</span>
+                </div>
+              ))}
+            </motion.div>
           </div>
 
-          {/* Right — 3D Kettlebell */}
-<div className="relative flex items-center justify-center">
-  {/* Glow behind 3D */}
-  <div className="absolute inset-0 bg-[#FF2A2A]/5 rounded-full blur-[80px]" />
+          {/* Right Column — Luxury Gym Image Frame with Clean Glass Badges */}
+          <div className="lg:col-span-6 relative flex items-center justify-center mt-8 lg:mt-0">
+            {/* Ambient Background Glow */}
+            <div className="absolute inset-0 bg-[#FF2A2A]/10 rounded-3xl blur-[60px] pointer-events-none" />
 
-  {/* 3D Scene */}
-  <div className="relative z-10 w-full h-[500px]">
-    <Suspense fallback={
-      <div className="w-full h-full flex items-center justify-center">
-        <div className="w-20 h-20 rounded-full border-2 border-[#FF2A2A]/30 border-t-[#FF2A2A] animate-spin" />
-      </div>
-    }>
-      <KettlebellScene />
-    </Suspense>
-  </div>
+            {/* Image Container */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={titleInView ? { opacity: 1, scale: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden border border-white/15 shadow-2xl bg-[#141622]"
+            >
+              <img
+                src={aboutGymImg}
+                alt="KP Fitness Luxury Gym Facility"
+                className="w-full h-full object-cover transition-transform duration-700 hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#090A0E] via-transparent to-transparent opacity-70 pointer-events-none" />
+            </motion.div>
 
-  {/* Floating badges */}
-  <div
-    className="absolute top-8 right-8 glass rounded-xl px-4 py-3 text-center z-20"
-    style={{ animation: 'float 3s ease-in-out infinite 0.5s' }}
-  >
-    <div className="text-2xl font-heading text-[#FF2A2A]">98%</div>
-    <div className="text-white/50 text-xs">Satisfaction</div>
-  </div>
+            {/* Floating Glass Badge 1: Top Right */}
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={titleInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="absolute top-4 right-4 sm:-top-4 sm:-right-4 bg-[#181A26]/90 border border-white/20 backdrop-blur-xl rounded-xl px-5 py-3 shadow-xl z-20 text-center"
+            >
+              <div className="text-xl sm:text-2xl font-extrabold text-[#FF2A2A]">98%</div>
+              <div className="text-white/80 text-xs font-medium uppercase tracking-wider">Member Satisfaction</div>
+            </motion.div>
 
-  <div
-    className="absolute bottom-8 left-8 glass rounded-xl px-4 py-3 text-center z-20"
-    style={{ animation: 'float 3.5s ease-in-out infinite 1s' }}
-  >
-    <div className="text-2xl font-heading text-[#FF2A2A]">25+</div>
-    <div className="text-white/50 text-xs">Programs</div>
-  </div>
+            {/* Floating Glass Badge 2: Bottom Left */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={titleInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="absolute bottom-4 left-4 sm:-bottom-4 sm:-left-4 bg-[#181A26]/90 border border-red-500/30 backdrop-blur-xl rounded-xl px-5 py-3 shadow-xl z-20 text-center"
+            >
+              <div className="text-xl sm:text-2xl font-extrabold text-white">10+ Years</div>
+              <div className="text-[#FF2A2A] text-xs font-semibold uppercase tracking-wider">Excellence</div>
+            </motion.div>
+          </div>
 
-  <div
-    className="absolute top-1/2 -translate-y-1/2 left-0 glass rounded-xl px-4 py-3 text-center z-20"
-    style={{ animation: 'float 4s ease-in-out infinite' }}
-  >
-    <div className="text-2xl font-heading text-[#FF2A2A]">10+</div>
-    <div className="text-white/50 text-xs">Years</div>
-  </div>
-</div>
         </div>
 
-        {/* Why Choose Us Cards */}
-        <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-24">
+        {/* Why Choose Us Feature Cards */}
+        <div ref={cardsRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20 sm:mt-24">
           {features.map((f, i) => (
-            <TiltCard
-                key={i}
-                f={f}
-                i={i}
-                inView={cardsInView}
-            />
-            ))}
-        </div>
-      </div>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              animate={cardsInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              whileHover={{ y: -4, borderColor: 'rgba(255,255,255,0.25)' }}
+              className="bg-gradient-to-b from-[#181A26] to-[#10121C] border border-white/12 rounded-2xl p-6 backdrop-blur-xl transition-all duration-300 group"
+            >
+              <div className="w-12 h-12 rounded-xl bg-[#FF2A2A]/15 border border-[#FF2A2A]/30 flex items-center justify-center text-xl mb-4 group-hover:bg-[#FF2A2A] group-hover:text-white transition-all duration-300">
+                {f.icon}
+              </div>
 
-      {/* CSS for float animation */}
-      <style>{`
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50% { transform: translateY(-15px); }
-        }
-        @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
+              <h3 className="text-white font-bold text-lg mb-2 group-hover:text-[#FF2A2A] transition-colors duration-300">
+                {f.title}
+              </h3>
+
+              <p className="text-white/70 text-sm leading-relaxed">
+                {f.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+      </div>
     </section>
   )
 }
