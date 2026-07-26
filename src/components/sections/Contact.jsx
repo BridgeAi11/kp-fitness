@@ -5,12 +5,12 @@ const contactInfo = [
   {
     icon: '📍',
     label: 'Address',
-    value: 'KP Fitness Club, Main Road, Coimbatore, Tamil Nadu 641001',
+    value: 'SRI KP FITNESS CENTER, Mathampalayam, Tamil Nadu 638459',
   },
   {
     icon: '📞',
     label: 'Phone',
-    value: '+91 63746 42981',
+    value: '+91 99622 59269',
   },
   {
     icon: '✉️',
@@ -43,7 +43,7 @@ export default function Contact() {
       `*Phone:* ${encodeURIComponent(form.phone || 'Not provided')}%0A` +
       `*Message:* ${encodeURIComponent(form.message)}`
 
-    const waUrl = `https://wa.me/916374642981?text=${waMessage}`
+    const waUrl = `https://wa.me/919962259269?text=${waMessage}`
 
     setTimeout(() => {
       window.open(waUrl, '_blank')
@@ -115,8 +115,8 @@ export default function Contact() {
               style={{ border: '1px solid rgba(255,42,42,0.2)' }}
             >
               <iframe
-                title="KP Fitness Location"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125322.47444747754!2d76.901614!3d11.016844!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba859af2f971cb5%3A0x2fc1c81e183ed282!2sCoimbatore%2C%20Tamil%20Nadu!5e0!3m2!1sen!2sin!4v1700000000000"
+                title="SRI KP FITNESS CENTER Location"
+                src="https://maps.google.com/maps?q=SRI%20KP%20FITNESS%20CENTER%2C%20Mathampalayam%2C%20Tamil%20Nadu%20638459&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
@@ -171,7 +171,7 @@ export default function Contact() {
                     name="phone"
                     value={form.phone}
                     onChange={handleChange}
-                    placeholder="+91 63746 42981"
+                    placeholder="+91 99622 59269"
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white placeholder-white/20 text-sm focus:outline-none focus:border-[#FF2A2A]"
                   />
                 </div>

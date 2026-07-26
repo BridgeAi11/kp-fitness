@@ -13,7 +13,7 @@ const features = [
     title: '24/7 Trainer Support',
     desc: 'Certified elite coaches available whenever you need guidance, form checks, or motivation.',
   },
-  {
+  { 
     icon: '📊',
     title: 'Real-Time Progress Analytics',
     desc: 'Track your strength gains, body composition shifts, and performance metrics in real time.',

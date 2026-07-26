@@ -40,7 +40,7 @@ export default function Navbar() {
   }, []);
 
   const handleJoinNow = () => {
-    window.location.href = "tel:+916374642981";
+    window.location.href = "tel:+919962259269";
   };
 
   return (

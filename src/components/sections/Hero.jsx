@@ -199,7 +199,7 @@ export default function Hero() {
           <motion.button
             whileHover={{ y: -2, scale: 1.03, boxShadow: '0 16px 36px rgba(255,30,30,0.6)' }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => window.location.href = 'tel:+916374642981'}
+            onClick={() => window.location.href = 'tel:+919962259269'}
             className="w-full sm:w-auto px-9 py-3.5 bg-[#FF1E1E] hover:bg-[#D61414] text-white font-extrabold rounded-full shadow-[0_6px_24px_rgba(255,30,30,0.45)] text-sm tracking-wider uppercase transition-all duration-300 flex items-center justify-center gap-2 cursor-pointer"
           >
             JOIN NOW

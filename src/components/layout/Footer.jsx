@@ -138,7 +138,7 @@ export default function Footer() {
             {/* Contact quick info */}
             <div className="mt-6 space-y-2">
               <p className="text-white/30 text-xs flex items-center gap-2">
-                <span>📞</span> +91 98765 43210
+                <span>📞</span> +91 99622 59269
               </p>
               <p className="text-white/30 text-xs flex items-center gap-2">
                 <span>✉️</span> info@kpfitness.com

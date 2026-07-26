@@ -1,14 +1,14 @@
 import { useInView } from 'react-intersection-observer'
 
 const services = [
-  { title: 'Strength Training', icon: '🏋️', desc: 'Build raw power with progressive overload techniques.' },
-  { title: 'Fat Loss', icon: '🔥', desc: 'Targeted programs to burn fat and reveal lean muscle.' },
-  { title: 'CrossFit', icon: '⚔️', desc: 'High-intensity functional movements for total fitness.' },
-  { title: 'HIIT', icon: '⚡', desc: 'Maximize calorie burn in minimum time with interval training.' },
-  { title: 'Cardio', icon: '🫀', desc: 'Improve endurance, heart health and stamina.' },
-  { title: 'Yoga', icon: '🧘', desc: 'Flexibility, balance and mindfulness combined.' },
-  { title: 'Bodybuilding', icon: '💪', desc: 'Sculpt and define every muscle group with precision.' },
-  { title: 'Functional Training', icon: '🎯', desc: 'Real-world movement patterns for everyday strength.' },
+  { title: 'Strength Training', icon: '🏋️', desc: 'Build muscle and power with guided weight training.' },
+  { title: 'Fat Loss', icon: '🔥', desc: 'Workouts designed to burn calories and shed extra fat.' },
+  { title: 'CrossFit', icon: '⚔️', desc: 'Fun full-body exercises to build strength and stamina.' },
+  { title: 'HIIT', icon: '⚡', desc: 'Quick, high-energy exercises to burn calories fast.' },
+  { title: 'Cardio', icon: '🫀', desc: 'Boost your stamina, energy levels, and heart health.' },
+  { title: 'Yoga', icon: '🧘', desc: 'Stretching and breathing to relax your mind and body.' },
+  { title: 'Bodybuilding', icon: '💪', desc: 'Build and shape your muscles step by step.' },
+  { title: 'Functional Training', icon: '🎯', desc: 'Simple daily movements for real-world strength.' },
 ]
 
 export default function Services() {
