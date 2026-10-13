@@ -26,30 +26,50 @@ const contactInfo = [
 
 export default function Contact() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', message: '' })
-  const [sent, setSent] = useState(false)
+  const [status, setStatus] = useState('idle')
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSent(true)
+    setStatus('loading')
 
-    /* Format WhatsApp pre-filled message text */
-    const waMessage =
-      `*New Contact Inquiry from KP Fitness Website*%0A%0A` +
-      `*Name:* ${encodeURIComponent(form.name)}%0A` +
-      `*Email:* ${encodeURIComponent(form.email)}%0A` +
-      `*Phone:* ${encodeURIComponent(form.phone || 'Not provided')}%0A` +
-      `*Message:* ${encodeURIComponent(form.message)}`
+    try {
+      const response = await fetch('https://formsubmit.co/ajax/info@kpfitness.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          _subject: `New Inquiry from ${form.name} - KP Fitness`,
+          name: form.name,
+          email: form.email,
+          phone: form.phone || 'Not provided',
+          message: form.message,
+        }),
+      })
 
-    const waUrl = `https://wa.me/919962259269?text=${waMessage}`
-
-    setTimeout(() => {
-      window.open(waUrl, '_blank')
-      setSent(false)
-      setForm({ name: '', email: '', phone: '', message: '' })
-    }, 400)
+      if (response.ok) {
+        setStatus('success')
+        setForm({ name: '', email: '', phone: '', message: '' })
+        setTimeout(() => setStatus('idle'), 5000)
+      } else {
+        throw new Error('Submission error')
+      }
+    } catch {
+      // Fallback: In case of network error, open mail directly
+      const subject = encodeURIComponent(`Contact Inquiry from ${form.name}`)
+      const body = encodeURIComponent(
+        `Name: ${form.name}\n` +
+        `Email: ${form.email}\n` +
+        `Phone: ${form.phone || 'Not provided'}\n\n` +
+        `Message:\n${form.message}`
+      )
+      window.location.href = `mailto:info@kpfitness.com?subject=${subject}&body=${body}`
+      setStatus('idle')
+    }
   }
 
   return (
@@ -130,12 +150,6 @@ export default function Contact() {
           <div className="glass rounded-2xl p-6 sm:p-8 md:p-10" style={{ border: '1px solid rgba(255,255,255,0.08)' }}>
             <h3 className="text-white font-semibold text-xl mb-6">Send Us a Message</h3>
 
-            {sent && (
-              <div className="mb-6 p-4 rounded-xl bg-[#22c55e]/10 border border-[#22c55e]/30 text-[#22c55e] text-sm flex items-center gap-2">
-                <span>✓</span>
-                <span>Opening WhatsApp with your message...</span>
-              </div>
-            )}
 
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
@@ -190,11 +204,18 @@ export default function Contact() {
                 />
               </div>
 
+              {status === 'success' && (
+                <div className="p-3.5 rounded-xl bg-[#FF2A2A]/10 border border-[#FF2A2A]/30 text-[#FF2A2A] text-sm text-center font-medium">
+                  ✓ Message sent successfully to info@kpfitness.com!
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-4 bg-[#FF2A2A] hover:bg-red-600 text-white font-semibold rounded-xl text-sm transition-all duration-300 shadow-[0_4px_20px_rgba(255,42,42,0.3)] hover:scale-[1.02] cursor-pointer mt-2 flex items-center justify-center gap-2"
+                disabled={status === 'loading'}
+                className="w-full py-4 bg-[#FF2A2A] hover:bg-red-600 disabled:opacity-70 text-white font-semibold rounded-xl text-sm transition-all duration-300 shadow-[0_4px_20px_rgba(255,42,42,0.3)] hover:scale-[1.02] cursor-pointer mt-2 flex items-center justify-center gap-2"
               >
-                <span>Send via WhatsApp</span>
+                <span>{status === 'loading' ? 'Submitting...' : 'Submit'}</span>
                 <span>→</span>
               </button>
             </form>

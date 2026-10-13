@@ -197,17 +197,8 @@ export default function Hero() {
     }
   }
 
-  const scrollToContact = () => {
-    const el = document.getElementById('contact')
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' })
-    } else {
-      window.location.href = 'tel:+919962259269'
-    }
-  }
-
-  const scrollToPrograms = () => {
-    const el = document.getElementById('services') || document.getElementById('membership')
+  const scrollToMembership = () => {
+    const el = document.getElementById('membership')
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
     }
@@ -218,7 +209,7 @@ export default function Hero() {
       ref={heroRef}
       id="home"
       onMouseMove={handleMouseMove}
-      className="relative w-full min-h-screen lg:h-[100dvh] bg-[#0A0A0A] text-white flex flex-col justify-center items-center overflow-hidden pt-[85px] lg:pt-[70px] pb-10 lg:pb-0 select-none"
+      className="hero-section relative w-full min-h-screen lg:h-[100dvh] bg-[#0A0A0A] text-white flex flex-col justify-center items-center overflow-hidden pt-[85px] lg:pt-[70px] pb-10 lg:pb-0 select-none"
     >
       {/* Dynamic keyframe styles */}
       <style>{`
@@ -288,6 +279,54 @@ export default function Hero() {
         .radial-glow-anim {
           animation: radialPulseGlow 4s infinite ease-in-out;
         }
+
+        @media (max-width: 768px) {
+          .hero-section {
+            padding-top: 80px !important;
+            padding-bottom: 28px !important;
+            min-height: auto !important;
+          }
+
+          .hero-badge-wrap {
+            margin-bottom: 14px !important;
+          }
+
+          .hero-heading-wrap {
+            margin-bottom: 16px !important;
+          }
+
+          .hero-heading-wrap h1 span:first-child {
+            margin-bottom: 4px !important;
+          }
+
+          .hero-description {
+            margin-bottom: 22px !important;
+            max-width: 380px !important;
+          }
+
+          .hero-cta-group {
+            gap: 12px !important;
+            margin-bottom: 24px !important;
+          }
+
+          .hero-cta-btn {
+            padding: 10px 18px !important;
+            font-size: 11px !important;
+            height: 42px !important;
+            max-width: 270px !important;
+            width: 100% !important;
+          }
+
+          .hero-cta-primary {
+            border: 2px solid transparent !important;
+          }
+
+          .hero-stats-wrap {
+            padding-top: 18px !important;
+            max-width: 360px !important;
+            margin: 0 auto !important;
+          }
+        }
       `}</style>
 
       {/* GPU Particle Embers Background */}
@@ -295,17 +334,17 @@ export default function Hero() {
 
       {/* Hero Content Container */}
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-4 sm:px-8 lg:px-12 flex-1 flex flex-col justify-center">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full h-full my-auto">
-          
+        <div className="hero-main-layout flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 w-full h-full my-auto">
+
           {/* ── LEFT 55% TEXT CONTENT ── */}
           <motion.div
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left pt-2 lg:pt-0"
+            className="hero-text-col w-full lg:w-[55%] flex flex-col items-center lg:items-start text-center lg:text-left pt-2 lg:pt-0"
           >
             {/* 1. Eyebrow Tag */}
-            <motion.div variants={itemVariants} className="mb-4 sm:mb-5">
+            <motion.div variants={itemVariants} className="hero-badge-wrap mb-4 sm:mb-5">
               <div className="pill-badge inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#FF1F1F]/15 border border-[#FF1F1F]/60 backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-[#FF1F1F] animate-ping" />
                 <span className="text-[#FF1F1F] text-[11px] sm:text-xs font-black tracking-[0.2em] uppercase">
@@ -315,7 +354,7 @@ export default function Hero() {
             </motion.div>
 
             {/* 2. Headline */}
-            <motion.div variants={itemVariants} className="mb-4 sm:mb-6">
+            <motion.div variants={itemVariants} className="hero-heading-wrap mb-4 sm:mb-6">
               <h1
                 className="font-black uppercase tracking-tight leading-[0.92] text-[#FFFFFF]"
                 style={{
@@ -335,7 +374,7 @@ export default function Hero() {
             {/* 3. Subheadline */}
             <motion.p
               variants={itemVariants}
-              className="text-gray-300 text-sm sm:text-base md:text-lg font-normal max-w-xl mb-6 sm:mb-8 leading-relaxed text-balance"
+              className="hero-description text-gray-300 text-sm sm:text-base md:text-lg font-normal max-w-xl mb-6 sm:mb-8 leading-relaxed text-balance"
             >
               Where discipline meets results. Personalized coaching, elite equipment, real transformation.
             </motion.p>
@@ -343,34 +382,34 @@ export default function Hero() {
             {/* 4. Two CTA Buttons */}
             <motion.div
               variants={itemVariants}
-              className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center lg:justify-start mb-8 sm:mb-10"
+              className="hero-cta-group flex flex-col sm:flex-row gap-4 w-full sm:w-auto items-center justify-center lg:justify-start mb-8 sm:mb-10"
             >
               {/* Solid Red CTA */}
-              <motion.button
+              <motion.a
+                href="tel:+919962259269"
                 whileHover={{ scale: 1.04, boxShadow: '0 0 30px rgba(255, 31, 31, 0.75)' }}
                 whileTap={{ scale: 0.97 }}
-                onClick={scrollToContact}
-                className="w-full sm:w-auto px-8 py-4 bg-[#FF1F1F] hover:bg-[#E10600] text-white font-black text-xs sm:text-sm tracking-widest uppercase rounded-xl shadow-[0_0_20px_rgba(255,31,31,0.5)] transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer group"
+                className="hero-cta-btn hero-cta-primary w-full sm:w-auto px-8 py-4 bg-[#FF1F1F] hover:bg-[#E10600] text-white font-black text-xs sm:text-sm tracking-widest uppercase rounded-xl shadow-[0_0_20px_rgba(255,31,31,0.5)] transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer group no-underline"
               >
                 <span>START YOUR JOURNEY</span>
                 <span className="text-base group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </motion.button>
+              </motion.a>
 
               {/* Outlined CTA */}
               <motion.button
                 whileHover={{ scale: 1.04, backgroundColor: 'rgba(255,31,31,0.12)', boxShadow: '0 0 25px rgba(255,31,31,0.3)' }}
                 whileTap={{ scale: 0.97 }}
-                onClick={scrollToPrograms}
-                className="w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/25 hover:border-[#FF1F1F] text-white font-black text-xs sm:text-sm tracking-widest uppercase rounded-xl transition-all duration-300 flex items-center justify-center cursor-pointer"
+                onClick={scrollToMembership}
+                className="hero-cta-btn hero-cta-secondary w-full sm:w-auto px-8 py-4 bg-transparent border-2 border-white/25 hover:border-[#FF1F1F] text-white font-black text-xs sm:text-sm tracking-widest uppercase rounded-xl transition-all duration-300 flex items-center justify-center cursor-pointer"
               >
-                VIEW PROGRAMS
+                VIEW MEMBERSHIP
               </motion.button>
             </motion.div>
 
             {/* 5. Small Trust Strip (Stats) */}
             <motion.div
               variants={itemVariants}
-              className="w-full max-w-xl pt-6 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-6 text-center lg:text-left"
+              className="hero-stats-wrap w-full max-w-xl pt-6 border-t border-white/10 grid grid-cols-3 gap-2 sm:gap-6 text-center lg:text-left"
             >
               <div className="flex flex-col">
                 <span className="text-[#FF1F1F] font-black text-2xl sm:text-3xl lg:text-4xl tracking-tight">
@@ -403,7 +442,7 @@ export default function Hero() {
           </motion.div>
 
           {/* ── RIGHT 45% DYNAMIC VISUAL ELEMENT ── */}
-          <div className="w-full lg:w-[45%] flex items-center justify-center relative mt-2 lg:mt-0">
+          <div className="hero-visual-col w-full lg:w-[45%] flex items-center justify-center relative mt-2 lg:mt-0">
             {/* Parallax Wrapper (desktop mouse parallax) */}
             <motion.div
               style={{
