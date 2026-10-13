@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const navLinks = ["Home", "About", "Programs", "Membership", "Trainers", "Contact"];
+const navLinks = ["Home", "About", "Programs", "Membership", "Contact"];
 
 function Logo() {
   return (

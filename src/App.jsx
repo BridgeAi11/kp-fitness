@@ -5,7 +5,6 @@ import Hero from './components/sections/Hero'
 import About from './components/sections/About'
 import Services from './components/sections/Services'
 import Membership from './components/sections/Membership'
-import Trainers from './components/sections/Trainers'
 import Testimonials from './components/sections/Testimonials'
 import BMICalculator from './components/sections/BMICalculator'
 import CalorieCalculator from './components/sections/CalorieCalculator'
@@ -31,7 +30,6 @@ export default function App() {
       <About />
       <Services />
       <Membership />
-      <Trainers />
       <Testimonials />
       <BMICalculator />
       <CalorieCalculator />
